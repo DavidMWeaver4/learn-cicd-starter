@@ -5,10 +5,18 @@ on:
     branches: [main]
 
 jobs:
-  Deploy:
+  deploy:
     name: checkout
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.26.0"
+
       - name: Set Up Go
-        run: scripts/buildprod.sh
+        run: ./scripts/buildprod.sh
